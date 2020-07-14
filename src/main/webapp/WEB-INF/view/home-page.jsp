@@ -13,7 +13,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-color: azure">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,8 +52,9 @@
 
 
 <div class="jumbotron">
-    <h1 class="display-4">Hello ${user.username},${user.age}</h1>
+    <h1 class="display-4">Hello ${user.firstname} !!</h1>
     <p class="lead">Your preffered Genre:<c:forEach var="user1" items="${user.prefferedGenre}"> ${user1}</c:forEach></p>
+    <p class="lead">Number of times people viewed your blogs</p>
     <hr class="my-4">
     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
     <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/blog/newBlog" role="button">GO BLOG</a>
@@ -65,7 +66,7 @@
 Welcome The Home Page!!
 
 
-<a href="${pageContext.request.contextPath}/blog/newBlog">Type a new Blog</a>
+
 <br><br>
 YOUR BLOGS
 <table>
