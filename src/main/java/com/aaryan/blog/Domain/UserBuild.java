@@ -5,6 +5,7 @@ import lombok.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
@@ -14,10 +15,12 @@ import javax.validation.constraints.Pattern;
 @Builder
 public class UserBuild {
 
-	@Pattern(regexp = "^[a-zA-Z0-9@_]{4,13}",message = "not valid")
+	@NotBlank
+	@Size(min=5,max = 15,message = "username should have atleast 5 and at max 15 characters")
 	private String username;
 
-	@Pattern(regexp = "^[a-zA-Z0-9@_]{4,13}",message = "not valid")
+	@NotBlank
+	@Size(min=5,max = 15,message = "password should have atleast 5 and at max 15 characters")
 	private String password;
 
 	

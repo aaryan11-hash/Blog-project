@@ -3,6 +3,7 @@ package com.aaryan.blog.Helper;
 import java.util.Collections;
 import java.util.List;
 
+import com.aaryan.blog.Domain.UserBuild;
 import com.aaryan.blog.Domain.UserInfo;
 
 public class AuthenticationAndLogin {
@@ -14,6 +15,14 @@ public class AuthenticationAndLogin {
 					return u.getId();
 			}
 	
+		return 0;
+	}
+
+	public static int verifyusernameSignup(List<UserInfo> userList, UserBuild user){
+		for(UserInfo u:userList){
+			if(user.getUsername().contentEquals(u.getUsername()))
+				return u.getId();
+		}
 		return 0;
 	}
 	

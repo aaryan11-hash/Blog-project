@@ -1,7 +1,20 @@
 package com.aaryan.blog.Controller;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.ImageTypeSpecifier;
+import javax.imageio.metadata.IIOMetadata;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.aaryan.blog.Helper.AuthenticationAndLogin;
@@ -15,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.aaryan.blog.Domain.*;
 import com.aaryan.blog.Service.*;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/blog")
@@ -32,13 +46,14 @@ public class BlogController {
 	
 	private UserInfo userinfo;
 	
-	private AuthenticationAndLogin helper;
+
 
 	private static boolean lock=false;
 	
 	@Autowired
 	BlogService service;
-	
+
+
 	public BlogController() {
 		this.userinfo=new UserInfo();
 	}
@@ -54,7 +69,7 @@ public class BlogController {
 	
 	@GetMapping("/afterlogin")
 	public String verifyLogin(@ModelAttribute("user") UserInfo user,Model model) {
-		int truth=helper.verifiedloginUser(service.getUserList(),user);
+		int truth=AuthenticationAndLogin.verifiedloginUser(service.getUserList(),user);
 		System.out.println("truth value:"+truth);
 		if(truth==0) {
 			
@@ -89,7 +104,7 @@ public class BlogController {
 	}
 	
 	@GetMapping("/profileBuilder")
-	public String profileBuilder(@Valid @ModelAttribute("newuser") UserBuild newuser, BindingResult result, Model model) {
+	public String profileBuilder(@Valid @ModelAttribute("newuser") UserBuild newuser, BindingResult result, Model model, HttpServletRequest request) {
 
 		if(result.hasErrors()) {
 			System.out.println("inside result error if block");
@@ -97,7 +112,7 @@ public class BlogController {
 			return "sign-up";
 		}
 
-		int truth=this.helper.verifiedloginUser(service.getUserList(),new UserInfo(newuser.getUsername(),newuser.getPassword()));
+		int truth=AuthenticationAndLogin.verifyusernameSignup(service.getUserList(),newuser);
 
 
 			if(truth==0) {
@@ -108,9 +123,11 @@ public class BlogController {
 				return "profilebuilder";
 			}
 
-			else
-				return "redirect:/blog/profileBuider";
-			
+			else {
+				//model.addAttribute("usernameError","username already exists!!");
+				request.setAttribute("usernameError","username already exists");
+				return "sign-up";
+			}
 		}
 
 
@@ -156,7 +173,7 @@ public class BlogController {
 	}
 
 	@GetMapping("/blogchecker")
-	public String blogChecker(@Valid @ModelAttribute ("blog") Blogs blog,BindingResult result){
+	public String blogChecker(@Valid @ModelAttribute ("blog") Blogs blog, BindingResult result){
 
 		if(result.hasErrors())
 			return "blogWriter";

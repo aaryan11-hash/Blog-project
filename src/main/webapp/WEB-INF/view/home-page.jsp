@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body style="background-color: azure">
@@ -52,6 +53,7 @@
 
 
 <div class="jumbotron">
+   <div style="color: indigo" >
     <h1 class="display-4">Hello ${user.firstname} !!</h1>
     <p class="lead">Your preffered Genre:<c:forEach var="user1" items="${user.prefferedGenre}"> ${user1}</c:forEach></p>
     <p class="lead">Number of times people viewed your blogs</p>
@@ -59,6 +61,7 @@
     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
     <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/blog/newBlog" role="button">GO BLOG</a>
     <p>this link button will tell about new posts</p>
+   </div>
 </div>
 
 
