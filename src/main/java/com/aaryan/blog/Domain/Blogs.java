@@ -21,7 +21,6 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @Entity
 @Table(name="blogs")
-
 public class Blogs {
 	
 
@@ -40,7 +39,7 @@ public class Blogs {
 	private String blogbody;
 	
 	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},fetch = FetchType.EAGER)
-	@JoinColumn(name="user_info_id")
+	@JoinColumn(name="user_id")
 	private UserInfo userinfo;
 
 

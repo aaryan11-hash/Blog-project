@@ -152,7 +152,15 @@ public class BlogController {
 
 	}
 
-	@GetMapping("refresh-to-home-page")
+	@GetMapping("/myBlogLink")
+	public String myBlogsPage(Model model,HttpServletRequest request){
+		model.addAttribute("myblog",this.userBlogs);
+		request.setAttribute("emptyBlogList",this.userBlogs.size());
+		System.out.println("blogs::==>>"+this.userBlogs);
+		return "MyBlogsPage";
+	}
+
+	@GetMapping("/refresh-to-home-page")
 	public String backToHomePageLinkResolve(Model model){
 		UserInfo user=service.getUserBlogs(this.userid);
 		this.userBlogs=user.getBlogsList();
@@ -169,6 +177,7 @@ public class BlogController {
 	public String newBlog(Model model) {
 		model.addAttribute("blog",new Blogs());
 		model.addAttribute("user",this.userinfo);
+
 		return "blogWriter";
 	}
 
@@ -179,7 +188,7 @@ public class BlogController {
 			return "blogWriter";
 
 		service.saveBlog(blog,this.userinfo.getId());
-		return "blogWriter";
+		return "redirect:/blog/refresh-to-home-page";
 	}
 
 

@@ -27,7 +27,7 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/blog/myBlogLink"><div style="color: darkcyan">MY-BLOGS</div></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,7 +44,7 @@
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <form class="form-inline my-2 my-lg-0" >
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -76,13 +76,9 @@ YOUR BLOGS
     <tr>
         <td>Heading</td>
     </tr>
-    <c:forEach var="userblog" items="${userblogs}">
-        <c:url var="blogup" value="/blog/updatelink">
-            <c:param name="update" value="${userblog.id}"></c:param>
-        </c:url>
+    <c:forEach var="userblog" items="${myblog}">
         <tr>
             <td>${userblog.heading}</td>
-            <td><a href="${blogup}">UPDATE</a> </td>
         </tr>
 
     </c:forEach>

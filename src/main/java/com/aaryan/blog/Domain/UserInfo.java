@@ -59,7 +59,7 @@ public class UserInfo implements Comparable<UserInfo> {
 	private String [] prefferedGenre;
 	
 	
-	@OneToMany(cascade =CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "userinfo",cascade =CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Blogs> blogsList;
 
 

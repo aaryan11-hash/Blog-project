@@ -26,7 +26,7 @@
 
     <div class="form-group">
         <label for="exampleInputPassword1">Enter Password</label>
-        <form:input path="password" class="form-control" id="exampleInputPassword1"/>
+        <form:input path="password" class="form-control" id="exampleInputPassword1" />
         <form:errors path="password" cssClass="error"/>
     </div>
 
