@@ -24,7 +24,7 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.aaryan.blog")
-@PropertySource({"classpath:application.properties"})
+//@PropertySource({"classpath:application.properties"})
 @Slf4j
 public class Config {
 

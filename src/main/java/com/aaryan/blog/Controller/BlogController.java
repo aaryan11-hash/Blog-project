@@ -68,7 +68,7 @@ public class BlogController {
 	}
 	
 	@GetMapping("/afterlogin")
-	public String verifyLogin(@ModelAttribute("user") UserInfo user,Model model) {
+	public String verifyLogin(@ModelAttribute("user") UserInfo user,Model model,HttpServletRequest request) {
 		int truth=AuthenticationAndLogin.verifiedloginUser(service.getUserList(),user);
 		System.out.println("truth value:"+truth);
 		if(truth==0) {

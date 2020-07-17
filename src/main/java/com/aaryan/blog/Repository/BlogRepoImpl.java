@@ -39,7 +39,6 @@ public class BlogRepoImpl implements BlogRepo {
 		
 		
 		Query<UserInfo> finallist=session.createQuery("from UserInfo",UserInfo.class);
-
 		
 		return new ArrayList<>(finallist.getResultList());
 	}
@@ -53,6 +52,15 @@ public class BlogRepoImpl implements BlogRepo {
 		blogger.getBlogsList();
 		
 		return blogger;
+	}
+
+	@Override
+	@Transactional
+	public List<Blogs> getUserBlogsOnly(int id){
+		Session sessi=entityManager.unwrap(Session.class);
+
+		UserInfo user=sessi.get(UserInfo.class,id);
+		return user.getBlogsList();
 	}
 
 	@Override

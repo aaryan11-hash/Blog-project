@@ -72,18 +72,7 @@ Welcome The Home Page!!
 
 <br><br>
 YOUR BLOGS
-<table>
-    <tr>
-        <td>Heading</td>
-    </tr>
-    <c:forEach var="userblog" items="${myblog}">
-        <tr>
-            <td>${userblog.heading}</td>
-        </tr>
 
-    </c:forEach>
-
-</table>
 
 
 

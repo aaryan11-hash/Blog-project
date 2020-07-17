@@ -16,4 +16,5 @@ public interface BlogRepo {
 	void saveUser(UserInfo user);
 
 	void saveBlog(Blogs blog, int id);
+	List<Blogs> getUserBlogsOnly(int id);
 }

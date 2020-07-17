@@ -14,5 +14,5 @@ public interface BlogService {
 
     void saveBlog(Blogs blog, int id);
 
-
+	List<Blogs> getUserBlogsOnly(int id);
 }
