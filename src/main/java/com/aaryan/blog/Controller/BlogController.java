@@ -84,6 +84,7 @@ public class BlogController {
 			//response.addCookie(cookie);
 			
 			model.addAttribute("username",userinfo.getUsername());
+			model.addAttribute("userid",this.userid);
 			model.addAttribute("user",userinfo);
 			model.addAttribute("myblog",this.userBlogs);
 			return "home-page";
@@ -153,21 +154,25 @@ public class BlogController {
 	}
 
 	@GetMapping("/myBlogLink")
-	public String myBlogsPage(Model model,HttpServletRequest request){
+	public String myBlogsPage(@RequestParam("userid") int userid, Model model,HttpServletRequest request){
+		this.userBlogs=service.getUserBlogsOnly(userid);
+
 		model.addAttribute("myblog",this.userBlogs);
+		model.addAttribute("userid",userid);
+
 		request.setAttribute("emptyBlogList",this.userBlogs.size());
-		System.out.println("blogs::==>>"+this.userBlogs);
 		return "MyBlogsPage";
 	}
 
 	@GetMapping("/refresh-to-home-page")
-	public String backToHomePageLinkResolve(Model model){
+	public String backToHomePageLinkResolve(@RequestParam("userid") int userid,Model model){
 		UserInfo user=service.getUserBlogs(this.userid);
 		this.userBlogs=user.getBlogsList();
 
 		model.addAttribute("username",userinfo.getUsername());
 		model.addAttribute("user",userinfo);
 		model.addAttribute("myblog",this.userBlogs);
+		model.addAttribute("userid",userid);
 
 		return "home-page";
 	}
