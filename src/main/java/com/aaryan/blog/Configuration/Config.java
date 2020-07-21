@@ -1,7 +1,7 @@
 package com.aaryan.blog.Configuration;
 
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

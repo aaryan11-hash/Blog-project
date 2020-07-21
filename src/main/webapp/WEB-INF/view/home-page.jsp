@@ -63,27 +63,19 @@
     <p class="lead">Number of times people viewed your blogs</p>
     <hr class="my-4">
     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-    <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/blog/newBlog" role="button">GO BLOG</a>
+       <div>
+           <c:url var="currentUser" value="/blog/newBlog">
+               <c:param name="userid" value="${userid}"></c:param>
+           </c:url>
+    <a class="btn btn-primary btn-lg" href="${currentUser}" role="button">GO BLOG</a>
+       </div>
     <p>this link button will tell about new posts</p>
    </div>
 </div>
-
+<div class="container">
 
 
 Welcome The Home Page!!
-
-your id
-
-<br><br>
-YOUR BLOGS
-
-
-
-
-
-
-
-
 
 
 YOUR RECOMMENDATIONS(Blogs per se)
@@ -99,7 +91,7 @@ YOUR PROFILE
 <!-- this link will redirect to a profile page where the uder can change and customize his/her profile-->
 
 
-
+</div>
 
 </body>
 </html>

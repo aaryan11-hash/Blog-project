@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -38,13 +39,13 @@ public class BlogController {
 	
 	private int userid;
 
-	private List<Blogs> userBlogs;
+	private List<Blogs> userBlogs=new ArrayList<>();
 
-	private List<Blogs> otherBlogs;
+	private List<Blogs> otherBlogs=new ArrayList<>();
 	
-	private Blogs blogRenderer;
+	private Blogs blogRenderer=new Blogs();
 	
-	private UserInfo userinfo;
+	private UserInfo userinfo=new UserInfo();
 	
 
 
@@ -125,7 +126,7 @@ public class BlogController {
 			}
 
 			else {
-				//model.addAttribute("usernameError","username already exists!!");
+
 				request.setAttribute("usernameError","username already exists");
 				return "sign-up";
 			}
@@ -154,25 +155,25 @@ public class BlogController {
 	}
 
 	@GetMapping("/myBlogLink")
-	public String myBlogsPage(@RequestParam("userid") int userid, Model model,HttpServletRequest request){
+	public String myBlogsPage( Model model,HttpServletRequest request){
 		this.userBlogs=service.getUserBlogsOnly(userid);
 
-		model.addAttribute("myblog",this.userBlogs);
-		model.addAttribute("userid",userid);
+		model.addAttribute("myblog",this.userinfo.getBlogsList());
+		model.addAttribute("userid",this.userinfo.getId());
 
 		request.setAttribute("emptyBlogList",this.userBlogs.size());
 		return "MyBlogsPage";
 	}
 
 	@GetMapping("/refresh-to-home-page")
-	public String backToHomePageLinkResolve(@RequestParam("userid") int userid,Model model){
-		UserInfo user=service.getUserBlogs(this.userid);
-		this.userBlogs=user.getBlogsList();
+	public String backToHomePageLinkResolve(Model model){
+
+		this.userinfo=service.getUserBlogs(this.userinfo.getId());
 
 		model.addAttribute("username",userinfo.getUsername());
-		model.addAttribute("user",userinfo);
-		model.addAttribute("myblog",this.userBlogs);
-		model.addAttribute("userid",userid);
+		model.addAttribute("user",this.userinfo);
+
+		model.addAttribute("userid",this.userinfo.getId());
 
 		return "home-page";
 	}
@@ -193,6 +194,7 @@ public class BlogController {
 			return "blogWriter";
 
 		service.saveBlog(blog,this.userinfo.getId());
+
 		return "redirect:/blog/refresh-to-home-page";
 	}
 

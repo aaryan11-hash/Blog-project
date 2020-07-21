@@ -14,8 +14,8 @@
 
 <body style="background-color: blanchedalmond">
 
-<div>
-  <div style=" background-color: blanchedalmond ;max-width: 15cm ; " >
+<div class="container">
+  <div style=" background-color: blanchedalmond ;max-width: 20cm ; padding-left: 8cm ;padding-top: 4.5cm" >
 <form:form action="${pageContext.request.contextPath}/blog/afterlogin" method="GET" modelAttribute="user">
 
     <div class="form-group" >

@@ -61,7 +61,7 @@ if(empty==0)
 
 
 
-
+<div class="container">
 <table class="table">
     <thead class="thead-dark">
     <tr>
@@ -87,16 +87,9 @@ if(empty==0)
 
     </c:forEach>
     <tbody>
-
-
-
-
-
     </tbody>
 </table>
-
-
-
+</div>
 
 
 </body>

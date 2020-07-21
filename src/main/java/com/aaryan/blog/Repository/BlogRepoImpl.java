@@ -49,7 +49,7 @@ public class BlogRepoImpl implements BlogRepo {
 		Session session=entityManager.unwrap(Session.class);
 		
 		UserInfo blogger=session.get(UserInfo.class,id);
-		blogger.getBlogsList();
+		//blogger.getBlogsList();
 		
 		return blogger;
 	}
